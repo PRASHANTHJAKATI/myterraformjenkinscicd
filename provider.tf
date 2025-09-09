@@ -1,12 +1,12 @@
 terraform {
   backend "s3" {
-    bucket         = "my-terraform-bucket22"   # <-- Change to your bucket name
-    key            = "cicd/terraform.tfstate"
+    bucket         = "my-terraform-bucket22"
+    key            = "state/terraform.tfstate"
     region         = "us-east-1"
-    dynamodb_table = "terraform-locks"       # For state locking
-    encrypt        = true
+    use_lockfile   = true   # replaces dynamodb_table
   }
 }
+
 
 provider "aws" {
   region = var.aws_region
