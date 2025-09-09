@@ -1,4 +1,4 @@
-resource "aws_s3_bucket"  {
+resource "aws_s3_bucket"  "tf_state" {
   bucket = "my-terraform-bucket-prash" # <-- must be globally unique
 
   versioning {
