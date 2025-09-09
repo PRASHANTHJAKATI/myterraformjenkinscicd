@@ -13,7 +13,7 @@ provider "aws" {
   access_key = "AKIATE2YZM62ORTAZREW"       # optional if using environment variables
   secret_key = "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"       # optional if using environment variables
 }
-resource "aws_s3_bucket" "my-s3-bucket" {
+resource "aws_s3_bucket" "my-terraform-bucket22" {
   bucket_prefix = var.bucket_prefix
   acl = var.acl
   
