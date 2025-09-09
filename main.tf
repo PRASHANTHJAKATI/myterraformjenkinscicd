@@ -1,4 +1,4 @@
-c2# Security group
+# Security group
 resource "aws_security_group" "jenkins_sg" {
   name        = var.security_group
   description = "Allow SSH & Jenkins traffic"
