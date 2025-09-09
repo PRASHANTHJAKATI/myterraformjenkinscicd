@@ -43,7 +43,7 @@ data "aws_subnets" "default" {
 }
 
 # EC2 instance for Jenkins
-resource "aws_instance" "jenkins" {
+resource "aws_instance" "jenkins-ec2" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
   key_name               = var.key_name
