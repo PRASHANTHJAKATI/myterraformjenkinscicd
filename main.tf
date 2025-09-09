@@ -1,4 +1,4 @@
-# Security group
+c2# Security group
 resource "aws_security_group" "jenkins_sg" {
   name        = var.security_group
   description = "Allow SSH & Jenkins traffic"
@@ -43,7 +43,7 @@ data "aws_subnets" "default" {
 }
 
 # EC2 instance for Jenkins
-resource "aws_instance" "jenkins" {
+resource "aws_instance" "jenkins-ec2" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
   key_name               = var.key_name
