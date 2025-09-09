@@ -5,7 +5,7 @@ variable "aws_region" {
 
 variable "key_name" {
   description = "SSH key pair name for EC2"
-  default     = "kmaster"
+  default     = "jenkins"
 }
 
 variable "instance_type" {
