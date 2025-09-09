@@ -1,6 +1,14 @@
 pipeline {
     agent any
 
+    parameters {
+        choice(
+            name: 'ACTION',
+            choices: ['plan', 'apply', 'destroy'],
+            description: 'Select Terraform action to run'
+        )
+    }
+
     stages {
         stage('Checkout Code') {
             steps {
@@ -8,23 +16,29 @@ pipeline {
             }
         }
     
-        stage ("terraform init") {
+        stage("Terraform Init") {
             steps {
-                sh ("terraform init -reconfigure") 
+                sh "terraform init -reconfigure"
             }
         }
         
-        stage ("plan") {
+        stage("Plan") {
+            when {
+                expression { params.ACTION == 'plan' }
+            }
             steps {
-                sh ('terraform plan') 
+                sh "terraform plan"
             }
         }
 
-        stage (" Action") {
+        stage("Terraform Action") {
+            when {
+                expression { params.ACTION != 'plan' }
+            }
             steps {
-                echo "Terraform action is --> ${action}"
-                sh ('terraform ${action} --auto-approve') 
-           }
+                echo "Terraform action is --> ${params.ACTION}"
+                sh "terraform ${params.ACTION} --auto-approve"
+            }
         }
     }
 }
