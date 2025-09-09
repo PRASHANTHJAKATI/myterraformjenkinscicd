@@ -1,18 +1,16 @@
-resource "aws_s3_bucket"  "tf_state" {
-  bucket = "my-terraform-bucket-prash" # <-- must be globally unique
+resource "aws_s3_bucket" "tf_state" {
+  bucket = "my-terraform-bucket22"
+}
 
-  versioning {
-    enabled = true
-  }
+resource "aws_s3_bucket_server_side_encryption_configuration" "tf_state" {
+  bucket = aws_s3_bucket.tf_state.id
 
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm = "AES256"
-      }
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
     }
   }
-
+}
   tags = {
     Name = "TerraformStateBucket"
   }
